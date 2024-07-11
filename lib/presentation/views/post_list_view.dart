@@ -7,39 +7,35 @@ import '../../providers/post_provider.dart';
 class PostListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final postsAsyncValue = ref.watch(postProvider);
-
+    final postListAsyncValue = ref.watch(postListProvider);
+  
     return Scaffold(
       appBar: AppBar(
-        title: Text('Posts'),
+        title: const Text('거지같은 riverpod'),
         actions: [
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
-              // ref.invalidate(postProvider);
-              // ref.read(postProvider);
+              ref.invalidate(postListProvider);
+              ref.read(postListProvider);
             },
           ),
         ],
       ),
-      // body: postsAsyncValue.when(
-      //   data: (posts) {
-      //     return ListView.builder(
-      //       itemCount: posts.length,
-      //       itemBuilder: (context, index) {
-      //         return PostItemWidget(post: posts[index]);
-      //       },
-      //     );
-      //   },
-      //   loading: () => const Center(child: CircularProgressIndicator()),
-      //   error: (error, stack) => Center(child: Text('Error: $error')),
-      // ),
-      body: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index){
-            return PostItemWidget(post: Post(id: 5, title: "test", content: "test contents"));
-          },
-        ),
+      body: Center(
+        child: postListAsyncValue.when(
+            data: (posts) {
+              return ListView.builder(
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  return PostItemWidget(post: posts[index]);
+                },
+              );
+            },
+            error:  (error, stack) => Text('오류: $error'),
+            loading: () => const CircularProgressIndicator(),
+          ),
+      ),
     );
   }
 }
