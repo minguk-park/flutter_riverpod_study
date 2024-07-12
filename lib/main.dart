@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_study/locator.dart';
 import 'package:flutter_riverpod_study/presentation/views/home_view.dart';
+import 'package:flutter_riverpod_study/router.dart';
 import 'package:get_it/get_it.dart';
 import 'datasources/remote_datasource.dart';
 import 'presentation/views/post_list_view.dart';
@@ -17,13 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'MVVM Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: PostListView(),
-      home: const HomeView(),
+      routerConfig: router,
     );
   }
 }
