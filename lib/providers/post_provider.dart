@@ -6,13 +6,30 @@ import '../repositories/post_repository.dart';
 import '../datasources/remote_datasource.dart';
 import '../datasources/local_datasource.dart';
 
-final isNetworkAvailableProvider = StateProvider<bool>((ref) {
-  return true; // 네트워크가 사용 가능하다고 가정
+final isNetworkAvailableStateProvider = StateProvider<bool>((ref) {
+  
+  debugPrint('isNetworkAvailableStateProvider');
+  
+  return true;
 });
 
+
+
+final isNetworkAvailableProvider = Provider<bool>((ref) {
+  
+  debugPrint('isNetworkAvailableProvider');
+  
+  return ref.watch(isNetworkAvailableStateProvider);
+});
+
+
+
 final postRepositoryProvider = Provider<PostRepository>((ref) {
+
   debugPrint('postRepositoryProvider');
+  
   final isNetworkAvailable = ref.watch(isNetworkAvailableProvider);
+  
   if (isNetworkAvailable) {
     return PostRepository(GetIt.I<RemoteDataSource>());
   } else {
@@ -20,7 +37,13 @@ final postRepositoryProvider = Provider<PostRepository>((ref) {
   }
 });
 
+
+
 final postProvider = FutureProvider<List<Post>>((ref) async {
+  
+  debugPrint('postProvider');
+  
   final postRepository = ref.watch(postRepositoryProvider);
+  
   return postRepository.getPosts();
 });
