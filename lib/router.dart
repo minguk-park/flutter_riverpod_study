@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_study/presentation/views/home_view.dart';
 import 'package:flutter_riverpod_study/presentation/views/increase_view.dart';
 import 'package:flutter_riverpod_study/presentation/views/post_list_view.dart';
+import 'package:flutter_riverpod_study/presentation/views/provider_type_view.dart';
 import 'package:go_router/go_router.dart';
 
 
+final router = GoRouter(
+  initialLocation: '/',
+  routes: [
+    route('/',                const HomeView()),
+    route('/post',            const PostListView()),
+    route('/increase',        const IncreaseView()),
+    route('/providertype',    const ProviderTypeView()),
+  ],
+);
+
+
+
+//Route Transition
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context, 
   required GoRouterState state, 
@@ -27,30 +42,15 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
   );
 }
 
-final router = GoRouter(
-  initialLocation: '/',
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomeView(),
-    ),
 
-    GoRoute(
-      path: '/post',
+//function route
+GoRoute route(String path, Widget view){
+  return GoRoute(
+      path: path,
       pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
         context: context, 
         state: state, 
-        child: const PostListView(),
+        child: view,
       ),
-    ),
-
-    GoRoute(
-      path: '/increase',
-      pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
-        context: context, 
-        state: state, 
-        child: const IncreaseView(),
-      ),
-    ),
-  ],
-);
+    );
+}
