@@ -3,15 +3,15 @@ import 'package:go_router/go_router.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String label;
-  final String? route;
+  final String route;
 
-  const ButtonWidget({super.key, required this.label, this.route});
+  const ButtonWidget({super.key, required this.label, required this.route});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        context.push('/boardriverpod');
+        context.push(route);
       },
       child: Container(
         decoration: BoxDecoration(

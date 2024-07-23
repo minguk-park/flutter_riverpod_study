@@ -17,7 +17,7 @@ class PostListView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('riverpod'),
+        title: const Text('Riverpod : Post Example'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),

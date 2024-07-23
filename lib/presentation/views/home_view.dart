@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod_study/presentation/widgets/button_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -18,15 +17,11 @@ class HomeView extends StatelessWidget {
       body: const Center(
         child: Column(
           children: [
-            ButtonWidget(label: 'Post Example : Riverpod'),
+            ButtonWidget(label: 'Riverpod : Post Example', route: '/post',),
             SizedBox(height: 32.0,),
-            ButtonWidget(label: 'board list with'),
+            ButtonWidget(label: 'Riverpod : Increase Example', route: '/increase',),
             SizedBox(height: 32.0,),
-            ButtonWidget(label: 'board list with riverpod'),
-            SizedBox(height: 32.0,),
-            ButtonWidget(label: 'board list with riverpod'),
-            SizedBox(height: 32.0,),
-            ButtonWidget(label: 'board list with riverpod'),
+            ButtonWidget(label: 'Riverpod : provider type', route: '/providertype',),
             SizedBox(height: 32.0,),
           ],
         ),

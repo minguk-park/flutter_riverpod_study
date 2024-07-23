@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_study/presentation/views/home_view.dart';
+import 'package:flutter_riverpod_study/presentation/views/increase_view.dart';
 import 'package:flutter_riverpod_study/presentation/views/post_list_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,12 +34,22 @@ final router = GoRouter(
       path: '/',
       builder: (context, state) => const HomeView(),
     ),
+
     GoRoute(
-      path: '/boardriverpod',
+      path: '/post',
       pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
         context: context, 
         state: state, 
-        child: PostListView(),
+        child: const PostListView(),
+      ),
+    ),
+
+    GoRoute(
+      path: '/increase',
+      pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+        context: context, 
+        state: state, 
+        child: const IncreaseView(),
       ),
     ),
   ],
