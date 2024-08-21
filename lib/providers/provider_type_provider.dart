@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
@@ -118,7 +119,58 @@ final dataNotifierProvider = AsyncNotifierProvider<DataNotifier, String>(() {
   return DataNotifier();
 });
 
-// ChangeNotifierProvider
+//NotifierProvider vs StateNotifierProvider
 
-// Provider와 StateProvider의 사용 예시는 increase example를 참고
+/*
+                  NotifierProvider                        StateNotifierProvider
+
+기본클래스           Notifier<T> 또는 AsyncNotifier<T>        StateNotifier<T>
+비동기 상태 지원      예 (AsyncNotifier<T>)                    아니오
+
+
+굳이 StateNotifierProvider를 써야 하는가?
+
+- 최적화
+- 심플한 구조
+- 명확한 의도
+- 사용자 및 프로젝트 규칙
+
+에 의해 사용
+
+결론
+
+***굳이 안써도 되는데 나누고싶은 변태면 쓰셈***
+
+*/
+
+//NotifierProvider vs AsyncNotifierProvider
+/*
+    위랑 비슷한 맥락임
+*/
+
+
+
+// ChangeNotifierProvider
+// 기존 provider 패키지를 사용하는 사람들을 위한 provider
+// migration이 쉬움
+// 새 코드를 짤때는 굳이굳이임
+class CounterChangeNotifier extends ChangeNotifier {
+  int _count = 0;
+
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();  // 상태 변경 알림
+  }
+
+  void decrement() {
+    _count--;
+    notifyListeners();  // 상태 변경 알림
+  }
+}
+
+final counterChangeNotifierProvider = ChangeNotifierProvider<CounterChangeNotifier>((ref) {
+  return CounterChangeNotifier();
+});
 
