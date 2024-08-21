@@ -17,9 +17,9 @@ class ProviderTypeView extends ConsumerWidget {
           children: [
             ButtonWidget(label: 'provider', route: '/providertype/provider',),
             SizedBox(height: 32.0,),
-            ButtonWidget(label: 'future provider', route: '/providertype/futureprovider',),
-            SizedBox(height: 32.0,),
             ButtonWidget(label: 'state provider', route: '/providertype/stateproviderview',),
+            SizedBox(height: 32.0,),
+            ButtonWidget(label: 'future provider', route: '/providertype/futureprovider',),
             SizedBox(height: 32.0,),
             ButtonWidget(label: 'stream provider', route: '/providertype/streamproviderview',),
             SizedBox(height: 32.0,),
