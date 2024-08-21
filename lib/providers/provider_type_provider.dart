@@ -15,6 +15,13 @@ final counterProvider = StateProvider<int>((ref) {
 });
 
 // FutureProvider
+// 비동기적으로 데이터를 제공
+final dataProvider = FutureProvider<String>((ref) async {
+  // 비동기 작업 예시
+  await Future.delayed(const Duration(seconds: 2));
+
+  return "Hello, from FutureProvider!";
+});
 
 // StreamProvider
 
